@@ -1,0 +1,31 @@
+
+<p>
+  Start editing to see some magic happen :)
+</p>
+<hr>
+<h2>Template Driven Form</h2>
+<form #uForm="ngForm" (ngSubmit)="onSubmit(uForm)">
+  Name : <input type="text" name="name" [(ngModel)]="userForm.name"
+    #uName="ngModel" required minlength="6"
+  >
+  <div *ngIf="uName.invalid && (uName.touched || uName.dirty)">
+    <p *ngIf="uName.errors['required']">
+       User Name Is Required Fields
+    </p>
+    <p *ngIf="uName.errors['minlength']">
+      User Minlength should be 6 charecters
+    </p>
+  </div>
+  <p>Age : <input type="text" name="age" [(ngModel)]="userForm.age"
+  #uAge="ngModel" required minlength="2"
+  ></p>
+  <div *ngIf="uAge.invalid && (uAge.touched || uAge.dirty)">
+    <p *ngIf="uAge.hasError('required')">
+      please enter age filed
+    </p>
+    <p *ngIf="uAge.hasError('minlength')">
+      Age should be minimum 2 charecters
+    </p>
+  </div>
+  <p><input type="submit" [disabled]="uForm.invalid"></p>
+</form>
